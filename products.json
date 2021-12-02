@@ -1,0 +1,40 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Computer Programming for Beginners",
+            "img": "./src/book_1.jpg",
+            "price": 4000
+        },
+        {
+            "id": 2,
+            "name": "Coders at Work",
+            "img": "./src/book_2.jpg",
+            "price": 5000
+        },
+        {
+            "id": 3,
+            "name": "JAVA for Beginners",
+            "img": "./src/book_3.jpg",
+            "price": 6000
+        },
+        {
+            "id": 4,
+            "name": "Node.js",
+            "img": "./src/book_4.jpg",
+            "price": 8000
+        },
+        {
+            "id": 5,
+            "name": "Python Programming",
+            "img": "./src/book_5.jpg",
+            "price": 6500
+        },
+        {
+            "id": 6,
+            "name": "C Programming",
+            "img": "./src/book_6.jpg",
+            "price": 5500
+        }
+    ]
+}

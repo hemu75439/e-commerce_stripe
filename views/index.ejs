@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Shop | Home</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://js.stripe.com/v3/" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Little Shopping Site</h1>
+        <nav>
+            <ul>
+                <li> <a href="#" class="active">Home</a> </li>
+                <li> <a href="/about">About</a> </li>
+                <li> <a href="/cart">Cart</a> </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Home</h1>
+
+        <div class="container">
+            <% data.products.forEach(p =>{ %> 
+            <div class="product" data-p-id="<%= p.id %>">
+                <img src="<%= p.img %> %>" alt="<%= p.name %>">
+                <h3><%= p.name %></h3>
+                <p>&#8377; <%= p.price / 100 %></p>
+                <button onclick="addToCart(this)" class="btn-purple">Add to Cart</button>
+            </div>
+            <% }) %> 
+            
+        </div>
+    </main>
+    <footer>
+        <p>&copy; All rights reserved. Little Shopping Site</p>
+    </footer>
+
+
+    <script>
+
+        // For Adding product to cart
+        function addToCart(btn) {
+            let product = btn.parentElement
+            let pId = product.dataset.pId
+            let productName = product.childNodes[3].innerText
+            let productImg = product.childNodes[1].src
+            let productPrice = product.childNodes[5].innerText
+
+            let info = {
+                pId: pId,
+                productName : productName,
+                productPrice : productPrice,
+                productImg : productImg
+            }
+           
+            
+            if(localStorage.getItem('littleShop')) {
+                let a = JSON.parse(localStorage.getItem('littleShop'))
+                a.push(info)
+                localStorage.setItem('littleShop', JSON.stringify(a))
+            } else {
+                localStorage.setItem('littleShop', JSON.stringify([info]))
+            }
+
+            btnRemove(btn)
+        }
+
+
+        // For removing product from cart
+        function removeFromCart(btn) {
+            let product = btn.parentElement
+            let productName = product.childNodes[3].innerText
+
+            let a = JSON.parse(localStorage.getItem('littleShop'))
+            for(let i=0 ; i<a.length ; i++) {
+                if(a[i].productName === productName) {
+                    a.splice(i, 1)
+                }
+            }
+            localStorage.setItem('littleShop', JSON.stringify(a))
+
+            btnAddToCart(btn)
+        }
+
+
+        // For changing btn "Add to Cart" to "Remove"
+        function btnRemove(btn) {
+            btn.innerText = "Remove"
+            btn.classList.remove('btn-purple')
+            btn.classList.add('btn-green')
+            btn.setAttribute('onclick' , 'removeFromCart(this)')
+        }
+
+        // For changing btn "Remove" to "Add to Cart"
+        function btnAddToCart(btn) {
+            btn.innerText = "Add to Cart"
+            btn.classList.remove('btn-green')
+            btn.classList.add('btn-purple')
+            btn.setAttribute('onclick' , 'addToCart(this)')
+        }
+
+
+        // When the page loads making sure all the already added products have "Remove" btn
+        function check() {
+            let products = document.querySelectorAll('.product')
+            let a = JSON.parse(localStorage.getItem('littleShop'))
+
+            products.forEach(p => {
+                for(let i=0 ; i<a.length ; i++) {
+                    if(p.childNodes[3].innerText === a[i].productName) {
+                        btnRemove(p.childNodes[7])
+                    }
+                }
+            })
+        }
+        check() // Invoking this function as soon as page loads
+        
+    </script>
+</body>
+</html>

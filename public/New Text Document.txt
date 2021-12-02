@@ -1,0 +1,30 @@
+Little shopping site
+
+programmming languages store
+
+users will be able to buy their specific programming contents.....
+
+objectives :-
+1)Add to cart feature
+2)multiple pages
+3)responsive design
+
+procedure :
+[x] Make the layouts
+[x] Write HTML and CSS
+[x] Homepage
+	[x] Header
+	[x] Main
+	[x] Products - with add to cart func
+	[x] Footer
+[x] About
+	[x] Header
+	[x] Simple text
+	[x] Footer
+
+[x] Cart
+	[x] header
+	[x] Added products (if any) - with removal func
+	[x] Total price area
+
+[x] Functionalities - add to cart and remove from cart

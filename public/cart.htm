@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Shop | Cart</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <h1>Little Shopping Site</h1>
+        <nav>
+            <ul>
+                <li> <a href="./index.htm">Home</a> </li>
+                <li> <a href="./about.htm">About</a> </li>
+                <li> <a href="#" class="active">Cart</a> </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Cart</h1>
+
+        <div class="container"></div>
+
+        <div class="total-area">
+            <h2>Total Price</h2>
+            <p></p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; All rights reserved. Little Shopping Site</p>
+    </footer>
+
+
+    <script>
+        function checkForProducts() {
+            let a = JSON.parse(localStorage.getItem('littleShop'))
+
+            document.querySelector('.container').innerHTML = ""
+
+            if(a.length > 0) {
+                a.forEach(item => {
+                    let product = document.createElement('div')
+                    product.classList.add('product')
+
+                    let img = document.createElement('img')
+                    img.src = item.productImg
+                    img.alt = item.productName
+                    product.appendChild(img)
+
+                    let h3 = document.createElement('h3')
+                    h3.innerText = item.productName
+                    product.appendChild(h3)
+
+                    let p = document.createElement('p')
+                    p.innerText = item.productPrice
+                    product.appendChild(p)
+
+                    let btn = document.createElement('button')
+                    btn.innerText = "Remove"
+                    btn.classList.add('btn-green')
+                    btn.setAttribute('onclick' , 'removeFromCart(this)')
+                    product.appendChild(btn)
+
+                    document.querySelector('.container').appendChild(product)
+                })
+            } else {
+                let div = document.createElement('div')
+                div.innerText = "Feels so lite..."
+                div.style.margin = "0 0 60px 0"
+
+                document.querySelector('.container').appendChild(div)
+            }
+
+            calculateTotal()
+        }
+
+        // For removing product from cart
+        function removeFromCart(btn) {
+            let product = btn.parentElement
+            let productName = product.childNodes[1].innerText
+            
+            let a = JSON.parse(localStorage.getItem('littleShop'))
+            for(let i=0 ; i<a.length ; i++) {
+                if(a[i].productName === productName) {
+                    a.splice(i, 1)
+                }
+            }
+            localStorage.setItem('littleShop', JSON.stringify(a))
+
+            product.remove()
+            checkForProducts()
+        }
+
+
+        // For calculating total price
+        function calculateTotal() {
+            let totalPrice = 0
+            
+            let products = document.querySelectorAll('.product')
+
+            if(products.length != 0) {
+                products.forEach(p => {
+                    let price = p.childNodes[2].innerText
+                    price = parseInt(price.slice(2))
+
+                    totalPrice += price
+                })
+            } else {
+                totalPrice.innerText = "$ 0"
+            }
+
+            document.querySelector('.total-area p').innerText = "$ " + totalPrice
+        }
+
+        checkForProducts()
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+    "env": {
+        "SERVER_URL": "http://localhost:3000",
+        "PK": "pk_test_51K234SSBixvD96VkmijUl05DTrxXxIT0HwkLCjiQk6F4sqVxnoA4j4SA4ZZOGgN93kuXkLo3fQO7Hw7BG5I4fMHB00mIv82gf4",
+        "SK": "sk_test_51K234SSBixvD96Vkpq0q4zyggQGmWnMdWOzP1i4ZDfozD6bvPa5hzkEHSK0Twh0y6c3DONP260xQEqpfnxQlId0j00ZVM2Qs03"
+	}
+}

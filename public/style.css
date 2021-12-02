@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 100%; /* equals 1rem or 16px */
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    --theme-black: #16161A;
+    --theme-white: #fff;
+    --theme-purple: #7F5AF0;
+    --theme-green: #2CB67D;
+    --max-width: 1600px;
+}
+
+
+/* ------------------------------------------------ Header */
+header {
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--max-width);
+    padding: 10px 40px;
+    background-color: var(--theme-black);
+    color: var(--theme-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.2rem;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+nav li:not(:last-child) {
+    margin-right: 30px;
+}
+
+nav a {
+    color: var(--theme-white);
+    text-decoration: none;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+
+.active {
+    color: var(--theme-purple);
+}
+
+
+/* -----------------------------------Main */
+main {
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--max-width);
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* -----------------------------Theme Title */
+main h1 {
+    width: 6rem;
+    font-size: 1.5rem;
+    align-self: flex-start;
+    display: inline-block;
+    border-bottom: 4px solid var(--theme-purple);
+    margin-bottom: 60px;
+}
+
+/* -----------------------------Theme Product */
+.container {
+    padding: 0 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.product {
+    width: 100%;
+    max-width: 330px;
+    margin: 0 50px 60px;
+}
+
+.product img {
+    width: 100%;
+    height: 400px;
+}
+
+.product h3 {
+    margin: 10px 0 5px 0;
+    font-size: 1.1rem;
+}
+.product p {
+    font-size: 1.3rem;
+}
+
+.product button {
+    margin-top: 10px;
+    outline: none;
+    border-radius: 2px;
+    border: none;
+    color: var(--theme-white);
+    padding: 5px 25px;
+    cursor: pointer;
+}
+.product button:hover {
+    border: 1px solid #333;
+}
+
+.btn-purple {
+    background-color: var(--theme-purple);
+}
+.btn-green {
+    background-color: var(--theme-green);
+}
+
+
+/* -------------------------------------------------Total Area */
+.total-area {
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.total-area h2 {
+    font-size: 1.1rem;
+}
+.total-area p {
+    font-size: 1.5rem;
+}
+.total-area button {
+    margin-top: 10px;
+    outline: none;
+    border-radius: 2px;
+    border: none;
+    color: var(--theme-white);
+    padding: 5px 25px;
+    background-color: var(--theme-purple);
+    cursor: pointer;
+}
+.total-area button:hover {
+    border: 1px solid #333;
+}
+
+
+/* --------------------------------Footer */
+footer {
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--max-width);
+    padding: 7px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme-black);
+    color: var(--theme-white);
+}
+
+
+
+@media screen and (max-width: 550px) {
+    header {
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    nav {
+        margin-top: 10px;
+        width: 100%;
+        padding: 0 40px;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    .container {
+        padding: 0 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product {
+        margin: 0 0 60px;
+    }
+}
